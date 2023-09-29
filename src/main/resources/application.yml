@@ -1,0 +1,56 @@
+---
+spring:
+  application:
+    name: couch-potato-test-service
+  cloud:
+    discovery:
+      client:
+        composite-indicator:
+          enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/csp_billing?currentSchema=public&logUnclosedConnections=true
+    username: dbuser
+    password: dbpassword
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+  jpa:
+    open-in-view: false
+    database: postgresql
+    properties:
+      hibernate:
+        default_schema: public
+        order_updates: true
+        generate_statistics: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+  task:
+    execution:
+      pool:
+        allow-core-thread-timeout: true
+        core-size: 8
+        max-size: 2147483647
+        queue-capacity: 2147483647
+        keep-alive: 60s
+  kafka:
+    bootstrap-servers: localhost:9092
+
+management:
+  endpoints:
+    web:
+      discovery:
+        enabled: true
+      exposure:
+        include: "*"
+    enabled-by-default: true
+  endpoint:
+    health:
+      group:
+        readiness:
+          include:
+            - readinessState
+            - db
+  metrics:
+    tags:
+      application: ${spring.application.name}
