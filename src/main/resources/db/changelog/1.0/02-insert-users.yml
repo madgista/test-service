@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 31052023231458
+      author: Margarita Savenkova
+      comment: inserts the ADMIN user
+      preConditions:
+        onFail: MARK_RAN
+        onFailMessage: user ADMIN already exists or other requirements are not met
+        and:
+          - tableExists:
+              tableName: ${user.tableName}
+          - sequenceExists:
+              sequenceName: ${user.tableName}_id_seq
+          - sqlCheck:
+              expectedResult: '0'
+              sql: select count(*) from ${database.defaultSchemaName}.${user.tableName} where username = 'admin'
+      changes:
+        - insert:
+            tableName: ${user.tableName}
+            columns:
+              - column:
+                  name: id
+                  valueSequenceNext: ${user.tableName}_id_seq
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: first_name
+                  value: admin
+              - column:
+                  name: last_name
+                  value: admin
+              - column:
+                  name: created
+                  valueComputed: current_timestamp
+              - column:
+                  name: updated
+                  valueComputed: current_timestamp
+      rollback:
+        - delete:
+            tableName: user
+            where: username = 'admin'

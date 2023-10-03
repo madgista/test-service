@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - property:
+      name: user.tableName
+      value: user
+
+  - changeSet:
+      id: 31052023223605
+      author: Margarita Savenkova
+      comment: creating a table of users
+      preConditions:
+        onFail: MARK_RAN
+        onFailMessage: ${user.tableName} already exists
+        not:
+          tableExists:
+            tableName: ${user.tableName}
+      changes:
+        - createTable:
+            tableName: ${user.tableName}
+            remarks: table of users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: first_name
+                  type: varchar(32)
+              - column:
+                  name: last_name
+                  type: varchar(32)
+              - column:
+                  name: active
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp(6)
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated
+                  type: timestamp(6)
+                  constraints:
+                    nullable: false
+        - createSequence:
+            sequenceName: ${user.tableName}_id_seq
+            incrementBy: 1
+            startValue: 1
+      rollback:
+        - dropTable:
+            tableName: ${user.tableName}
+        - dropSequence:
+            sequenceName: ${user.tableName}_id_seq

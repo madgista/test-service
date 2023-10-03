@@ -1,0 +1,2 @@
+org.springframework.test.context.ContextCustomizerFactory=\
+  com.couch.potato.testservice.testcontainers.TestContainersContextCustomizerFactory
