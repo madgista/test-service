@@ -43,15 +43,18 @@
                     <fieldName>stacktrace</fieldName>
                     <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
                         <maxDepthPerThrowable>20</maxDepthPerThrowable>
-                        <maxLength>4096</maxLength>
+                        <maxLength>1000000</maxLength>
                         <rootCauseFirst>true</rootCauseFirst>
+                        <omitCommonFrames>true</omitCommonFrames>
                         <!-- generated class names -->
                         <exclude>\$\$FastClassByCGLIB\$\$</exclude>
                         <exclude>\$\$EnhancerBySpringCGLIB\$\$</exclude>
+                        <exclude>\$SpringCGLIB$</exclude>
                         <exclude>^sun\.reflect\..*\.invoke</exclude>
                         <!-- JDK internals -->
                         <exclude>^com\.sun\.</exclude>
                         <exclude>^sun\.net\.</exclude>
+                        <exclude>^sun\.nio\.</exclude>
                         <exclude>^jdk\.internal\.reflect\.</exclude>
                         <!-- dynamic invocation -->
                         <exclude>^net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
