@@ -31,6 +31,8 @@
                         {
                         "component": "%logger{64}",
                         "owner": "core-platform",
+                        "traceId":"%X{trace_id:-}",
+                        "spanId":"%X{span_id:-}"
                         }
                     </pattern>
                 </pattern>
@@ -120,7 +122,8 @@
 
     <springProfile name="default,test">
         <logger name="ru.raiffeisen" level="debug"/>
-        <logger name="org.springframework" level="info"/>
+
+        <logger name="query-logger" level="debug"/>
 
         <root level="info">
             <appender-ref ref="async-console"/>

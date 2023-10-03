@@ -21,7 +21,7 @@ spring:
       hibernate:
         default_schema: public
         order_updates: true
-        generate_statistics: true
+        generate_statistics: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
@@ -44,7 +44,26 @@ management:
       exposure:
         include: "*"
     enabled-by-default: true
-
+  tracing:
+    enabled: true
+    propagation:
+      type: w3c
+    sampling:
+      probability: 1
   metrics:
     tags:
       application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+
+jdbc:
+  datasource-proxy:
+    query:
+      enable-logging: true
+      log-level: debug
+      logger-name: query-logger
+    include-parameter-values: true
+    logging: slf4j
+    slow-query:
+      enable-logging: true

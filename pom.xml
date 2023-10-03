@@ -37,6 +37,10 @@
         <mockito-inline.version>5.2.0</mockito-inline.version>
         <spring-kafka.version>2.9.12</spring-kafka.version>
         <byte-buddy.version>1.14.8</byte-buddy.version>
+        <micrometer-tracing.version>1.1.5</micrometer-tracing.version>
+        <zipkin-reporter.version>2.16.4</zipkin-reporter.version>
+        <micrometer-test.version>1.11.4</micrometer-test.version>
+        <datasource-micrometer-spring-boot.version>1.0.2</datasource-micrometer-spring-boot.version>
 
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.1.2</maven-failsafe-plugin.version>
@@ -53,6 +57,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-tracing-bom</artifactId>
+                <version>${micrometer-tracing.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-bom</artifactId>
@@ -120,6 +131,10 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
 
         <!-- OBSERVABILITY -->
         <dependency>
@@ -128,13 +143,20 @@
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-tracing-bridge-brave</artifactId>
-            <!--artifactId>micrometer-tracing-bridge-otel</artifactId -->
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.ttddyy.observation</groupId>
+            <artifactId>datasource-micrometer-spring-boot</artifactId>
+            <version>${datasource-micrometer-spring-boot.version}</version>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-            <scope>runtime</scope>
+            <artifactId>micrometer-tracing-bridge-otel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-exporter-zipkin</artifactId>
         </dependency>
 
         <!-- SPRING COMPONENTS -->
@@ -261,6 +283,12 @@
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-tracing-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-test</artifactId>
+            <version>${micrometer-test.version}</version>
             <scope>test</scope>
         </dependency>
 
