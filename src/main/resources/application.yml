@@ -8,7 +8,7 @@ spring:
         composite-indicator:
           enabled: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/csp_billing?currentSchema=public&logUnclosedConnections=true
+    url: jdbc:postgresql://localhost:5432/db?currentSchema=public&logUnclosedConnections=true
     username: dbuser
     password: dbpassword
     driver-class-name: org.postgresql.Driver
