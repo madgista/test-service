@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/users/user/{username}")
     public ResponseEntity<UserDto> getUserByUsername(@PathVariable @NotBlank String username) {
         return userService.findUserByUsername(username)
-            .map(ResponseEntity::ok)
-            .orElseThrow(() -> new UserNotFound("Cannot found any user by username -> %s".formatted(username)));
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> new UserNotFound("Cannot found any user by username -> %s".formatted(username)));
     }
 }
