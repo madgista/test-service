@@ -62,5 +62,6 @@ class UserControllerTest {
             .as(UserDto.class);
 
         Assertions.assertThat(userDto).isNotNull();
+        repository.deleteAll();
     }
 }

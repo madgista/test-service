@@ -44,13 +44,7 @@ management:
       exposure:
         include: "*"
     enabled-by-default: true
-  endpoint:
-    health:
-      group:
-        readiness:
-          include:
-            - readinessState
-            - db
+
   metrics:
     tags:
       application: ${spring.application.name}
