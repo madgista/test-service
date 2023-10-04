@@ -41,6 +41,7 @@
         <zipkin-reporter.version>2.16.4</zipkin-reporter.version>
         <micrometer-test.version>1.11.4</micrometer-test.version>
         <datasource-micrometer-spring-boot.version>1.0.2</datasource-micrometer-spring-boot.version>
+        <csp-metrics-starter.version>2.2.0</csp-metrics-starter.version>
 
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.1.2</maven-failsafe-plugin.version>
@@ -96,6 +97,13 @@
     </dependencyManagement>
 
     <dependencies>
+
+        <!-- CSP -->
+        <dependency>
+            <groupId>ru.raiffeisen</groupId>
+            <artifactId>csp-metrics-starter</artifactId>
+            <version>${csp-metrics-starter.version}</version>
+        </dependency>
 
         <!-- SPRING BOOT STARTERS -->
         <dependency>
