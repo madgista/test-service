@@ -70,4 +70,3 @@ jdbc:
     logging: slf4j
     slow-query:
       enable-logging: true
-
