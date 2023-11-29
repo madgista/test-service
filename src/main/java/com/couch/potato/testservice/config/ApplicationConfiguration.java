@@ -2,6 +2,9 @@ package com.couch.potato.testservice.config;
 
 import io.micrometer.observation.ObservationRegistry;
 import io.micrometer.observation.aop.ObservedAspect;
+import io.opentelemetry.context.propagation.TextMapPropagator;
+import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
+import io.opentelemetry.extension.trace.propagation.JaegerPropagator;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
@@ -24,5 +27,15 @@ public class ApplicationConfiguration {
             .setSkipNullEnabled(true)
             .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
         return mapper;
+    }
+
+    @Bean
+    public OtlpGrpcSpanExporter otlpGrpcSpanExporter() {
+        return OtlpGrpcSpanExporter.getDefault();
+    }
+
+    @Bean
+    public TextMapPropagator textMapPropagator() {
+        return JaegerPropagator.getInstance();
     }
 }
