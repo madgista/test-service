@@ -35,7 +35,6 @@
         <csp-metrics-starter.version>1.1.0</csp-metrics-starter.version>
         <mockito.version>5.5.0</mockito.version>
         <mockito-inline.version>5.2.0</mockito-inline.version>
-        <spring-kafka.version>2.9.12</spring-kafka.version>
         <byte-buddy.version>1.14.8</byte-buddy.version>
         <micrometer-tracing.version>1.1.5</micrometer-tracing.version>
         <zipkin-reporter.version>2.16.4</zipkin-reporter.version>
@@ -167,22 +166,6 @@
             <artifactId>opentelemetry-exporter-zipkin</artifactId>
         </dependency>
 
-        <!-- SPRING COMPONENTS -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.xerial.snappy</groupId>
-                    <artifactId>snappy-java</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <!-- SPRING DEPENDENCIES -->
         <dependency>
             <groupId>org.liquibase</groupId>
@@ -309,11 +292,6 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>kafka</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

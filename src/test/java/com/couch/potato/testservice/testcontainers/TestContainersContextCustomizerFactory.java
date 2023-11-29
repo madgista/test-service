@@ -1,7 +1,6 @@
 package com.couch.potato.testservice.testcontainers;
 
 import com.couch.potato.testservice.testcontainers.impl.ArtemisContainerFactory;
-import com.couch.potato.testservice.testcontainers.impl.KafkaContainerFactory;
 import com.couch.potato.testservice.testcontainers.impl.PostgresqlContainerFactory;
 import com.couch.potato.testservice.testcontainers.impl.RedisContainerFactory;
 import java.util.Arrays;
@@ -22,7 +21,6 @@ public class TestContainersContextCustomizerFactory implements ContextCustomizer
     private static final Map<String, ContainerFactory<?>> CONTAINER_FACTORIES = Map.of(
         ContainerName.POSTGRESQL, new PostgresqlContainerFactory(),
         ContainerName.REDIS, new RedisContainerFactory(),
-        ContainerName.KAFKA, new KafkaContainerFactory(),
         ContainerName.ARTEMIS, new ArtemisContainerFactory()
     );
 

@@ -19,10 +19,5 @@
                 <ignoreVersion type="regex">7.*</ignoreVersion>
             </ignoreVersions>
         </rule>
-        <rule groupId="org.springframework.kafka" comparisonMethod="maven">
-            <ignoreVersions>
-                <ignoreVersion type="regex">3.*</ignoreVersion>
-            </ignoreVersions>
-        </rule>
     </rules>
 </ruleset>

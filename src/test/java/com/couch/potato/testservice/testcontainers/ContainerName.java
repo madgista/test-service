@@ -5,8 +5,6 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ContainerName {
 
-    public static final String KAFKA = "confluentinc/cp-kafka";
-
     public static final String POSTGRESQL = "postgres";
 
     public static final String REDIS = "redis";
