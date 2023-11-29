@@ -124,6 +124,7 @@
         <logger name="ru.raiffeisen" level="debug"/>
 
         <logger name="query-logger" level="debug"/>
+        <logger name="org.apache.kafka.clients.NetworkClient" level="OFF"/>
 
         <root level="info">
             <appender-ref ref="async-console"/>
